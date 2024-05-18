@@ -14,13 +14,13 @@ app.use(corsMiddleware);
 app.use(express.json());
 
 // Routes
-const userRoutes = require("./routes/userRoutes");
-const taskRoutes = require("./routes/taskRoutes");
-const notificationRoutes = require("./routes/notificationRoutes");
+const clientRoutes = require("./routes/clientRoutes");
+const freelancerRoutes = require("./routes/freelancerRoutes");
 
-app.use("/api/users", userRoutes);
-app.use("/api/tasks", taskRoutes);
-app.use("/api/notifications", notificationRoutes);
+
+app.use("/api/client", clientRoutes);
+app.use("/api/freelancer", freelancerRoutes);
+
 
 // Start server
 app.listen(PORT, () => {
