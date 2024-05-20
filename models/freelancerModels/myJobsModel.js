@@ -1,5 +1,5 @@
 const mongoose= require ("mongoose");
-const hireFreelancer= mongoose.Schema({
+const MyJobs= mongoose.Schema({
     freelancerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Reference to the User model
@@ -10,12 +10,13 @@ const hireFreelancer= mongoose.Schema({
         ref: 'User', // Reference to the User model
         required: true,
       },
-      //detailed description ref for hire freelancer
       jobId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PostJob', // Reference to the User model
         required: true,
       },
-      
+      status:{
+        type: String,
+        enum:["active", "pending", "completed"]
+      }
 })
- modules.export= mongoose.model('HireFreelancer', hireFreelancer)

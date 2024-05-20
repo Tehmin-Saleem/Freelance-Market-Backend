@@ -1,4 +1,22 @@
-const mongoose =require("mongoose");
-const messagesSchema=new mongoose.Schema({
-    
-})
+// Define the messages schema
+const messageSchema = new mongoose.Schema({
+  chatId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Chat", // Reference to the Chat model
+    required: true,
+  },
+  attachment: {
+    type: String,
+  },
+  sendBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Chat", // Reference to the Chat model
+    required: true,
+  },
+  sendTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Chat", // Reference to the Chat model
+    required: true,
+  },
+});
+module.exports = mongoose.model("Messages", messageSchema);

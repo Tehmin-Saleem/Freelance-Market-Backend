@@ -1,5 +1,5 @@
-const mongoose= require ("mongoose");
-const hireFreelancer= mongoose.Schema({
+const mongoose = require ("mongoose");
+const feedbackRequestSchema= new mongoose.Schema({
     freelancerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Reference to the User model
@@ -10,12 +10,14 @@ const hireFreelancer= mongoose.Schema({
         ref: 'User', // Reference to the User model
         required: true,
       },
-      //detailed description ref for hire freelancer
       jobId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'PostJob', // Reference to the User model
         required: true,
       },
-      
-})
- modules.export= mongoose.model('HireFreelancer', hireFreelancer)
+      status:{
+        type: String,
+        enum:["active", "pending","completed"]
+      }
+});
+modules.export= mongoose.model("FeedbackRequest", feedbackRequestSchema);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const signupSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -18,30 +18,17 @@ const signupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // Additional fields specific to clients or freelancers
   countryName: {
     type: [String], // Array of strings to hold multiple countries
+   
+  },
+  // Other user properties
+  role: {
+    type: String,
+    enum: ['client', 'freelancer'],
     required: true,
   },
-
 });
 
-
-
-const loginSchema = new mongoose.Schema({
-
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
- 
-  password: {
-    type: String,
-    required: true,
-  },
- 
-});
-module.exports = {
-Freelancerlogin:mongoose.model("Freelancerlogin", loginSchema),
-Freelancersignup:mongoose.model("Freelancersignup", signupSchema),
-}
+module.exports = mongoose.model("User", userSchema);
