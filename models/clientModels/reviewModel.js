@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const ratingSchema = mongoose.Schema({
   description: {
     type: String,
-    required: true,
+    // required: true,
   },
   freelancerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // Reference to the User model
-    required: true,
+    // required: true,
   },
   clientId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // Reference to the User model
-    required: true,
+    // required: true,
   },
   stars: {
     type: Number,

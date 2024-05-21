@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const profileSchema = new mongoose.Schema({
   firstName: {
@@ -9,6 +9,7 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  //user profile title
   title: {
     type: String,
     required: true,
@@ -16,7 +17,6 @@ const profileSchema = new mongoose.Schema({
 
   profileImage: {
     type: String,
-    required: true,
   },
   experience: {
     type: String,
@@ -28,24 +28,19 @@ const profileSchema = new mongoose.Schema({
   },
   profileDescription: {
     type: String,
-    required: true,
   },
   skills: {
     type: [String],
-    required: true,
   },
   portfolio: {
     projectTitle: {
       type: String,
-      required: true,
     },
     toolUsed: {
       type: String,
-      required: true,
     },
     category: {
       type: String,
-      required: true,
     },
     attachment: {
       type: String,
@@ -53,8 +48,7 @@ const profileSchema = new mongoose.Schema({
     url: {
       type: String,
     },
-    
   },
 });
 
-module.exports = mongoose.model('Profile', profileSchema);
+module.exports = mongoose.model("Profile", profileSchema);
