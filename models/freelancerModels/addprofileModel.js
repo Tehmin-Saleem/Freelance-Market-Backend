@@ -29,6 +29,9 @@ const profileSchema = new mongoose.Schema({
   profileDescription: {
     type: String,
   },
+  qualification: {
+    type: String,
+  },
   skills: {
     type: [String],
   },
