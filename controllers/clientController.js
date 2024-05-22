@@ -4,18 +4,19 @@ const jwt = require("jsonwebtoken");
 
 // Sign-up function
 exports.signUp = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
 
   try {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
+    // Create a new user with the role
     const user = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
+      role, // Include the role
     });
 
     await user.save();
@@ -24,8 +25,6 @@ exports.signUp = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
-// Login function
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 

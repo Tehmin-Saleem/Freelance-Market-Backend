@@ -7,8 +7,10 @@ exports.signUp = async (req, res) => {
   const { firstName, lastName, email, password, countryName } = req.body;
 
   try {
-    // Validate role-specific fields
-
+    // // Validate role-specific fields
+    // if (!role || (role !== "client" && role !== "freelancer")) {
+    //   return res.status(400).json({ message: "Invalid role" });
+    // }
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -19,6 +21,8 @@ exports.signUp = async (req, res) => {
       email,
       password: hashedPassword,
       countryName,
+
+      // ...(role === "freelancer" && { countryName }),
     });
 
     await user.save();
@@ -33,6 +37,11 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // // Validate role
+    // if (!role || (role !== "client" && role !== "freelancer")) {
+    //   return res.status(400).json({ message: "Invalid role" });
+    // }
+
     // Find the user by email
     const user = await User.findOne({ email });
 
