@@ -8,15 +8,15 @@ exports.createFeedbackRequest = async (req, res) => {
 
   try {
     // Validate the user IDs and job ID
-    const freelancer = await User.findById(freelancerId);
-    const client = await User.findById(clientId);
-    const job = await PostJob.findById(jobId);
+    // const freelancer = await User.findById(freelancerId);
+    // const client = await User.findById(clientId);
+    // const job = await PostJob.findById(jobId);
 
-    if (!freelancer || !client || !job) {
-      return res
-        .status(400)
-        .json({ message: "Invalid freelancer, client, or job ID" });
-    }
+    // if (!freelancer || !client || !job) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: "Invalid freelancer, client, or job ID" });
+    // }
 
     // Create the feedback request
     const feedbackRequest = new FeedbackRequest({

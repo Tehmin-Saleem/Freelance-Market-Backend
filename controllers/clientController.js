@@ -1,10 +1,12 @@
+// controllers/clientController.js
+
 const User = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Sign-up function
 exports.signUp = async (req, res) => {
-  const { firstName, lastName, email, password, role } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     // Hash the password
@@ -16,7 +18,7 @@ exports.signUp = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      role, // Include the role
+      // role: "client", // Fixed role as "client"
     });
 
     await user.save();
@@ -25,6 +27,8 @@ exports.signUp = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// Login function
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -32,8 +36,8 @@ exports.login = async (req, res) => {
     // Find the user by email
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    if (user) {
+      return res.status(404).json({ message: "User already exists" });
     }
 
     // Compare the password

@@ -1,3 +1,5 @@
+// controllers/freelancerController.js
+
 const User = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -7,22 +9,17 @@ exports.signUp = async (req, res) => {
   const { firstName, lastName, email, password, countryName } = req.body;
 
   try {
-    // // Validate role-specific fields
-    // if (!role || (role !== "client" && role !== "freelancer")) {
-    //   return res.status(400).json({ message: "Invalid role" });
-    // }
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
+    // Create a new user with the role and countryName (if role is "freelancer")
     const user = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
+      // role: "freelancer", // Fixed role as "freelancer"
       countryName,
-
-      // ...(role === "freelancer" && { countryName }),
     });
 
     await user.save();
@@ -37,16 +34,11 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // // Validate role
-    // if (!role || (role !== "client" && role !== "freelancer")) {
-    //   return res.status(400).json({ message: "Invalid role" });
-    // }
-
     // Find the user by email
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    if (user) {
+      return res.status(404).json({ message: "User already exist" });
     }
 
     // Compare the password

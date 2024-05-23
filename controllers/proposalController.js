@@ -37,7 +37,8 @@ exports.createProposal = async (req, res) => {
 exports.getAllProposals = async (req, res) => {
   try {
     const proposals = await Proposal.find().populate(
-      "freelancerId jobId clientId"
+      "freelancerId",
+      "firstName lastName countryName"
     );
 
     if (!proposals.length) {
@@ -56,7 +57,7 @@ exports.getProposalsByJobId = async (req, res) => {
 
   try {
     const proposals = await Proposal.find({ jobId }).populate(
-      "freelancerId clientId jobId"
+      "freelancerId  jobId"
     );
 
     if (!proposals.length) {
