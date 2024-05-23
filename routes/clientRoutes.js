@@ -6,10 +6,22 @@ const clientController = require("../controllers/clientController");
 const postjobController = require("../controllers/postjobController");
 const hireFreelancerController = require("../controllers/hirefreelancerController");
 const reviewController = require("../controllers/reviewController");
+const authMiddleware = require("../middleware/auth");
+const roleCheck = require("../middleware/roleCheck");
+
 // const authenticate = require("../middleware/authenticate");
 router.post("/signup", clientController.signUp);
 router.post("/login", clientController.login);
+// , roleCheck("client")
+router.use(authMiddleware());
 //routes for post a job
+const notificationController = require("../controllers/notificationsController");
+
+// Route to get all notifications for the logged-in user
+router.get("/notifications", notificationController.getNotifications);
+
+// Route to mark a notification as read by its ID
+router.put("/notifications/:id/mark-read", notificationController.markAsRead);
 router.post("/postjob", postjobController.createJobPost);
 router.get("/postjob", postjobController.getAllJobPosts);
 router.get("/postjob/:id", postjobController.getJobPostById);
