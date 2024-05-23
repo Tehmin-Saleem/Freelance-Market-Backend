@@ -17,7 +17,6 @@ app.use(express.json());
 
 // Routes
 const clientRoutes = require("./routes/clientRoutes");
-
 const freelancerRoutes = require("./routes/freelancerRoutes");
 
 app.use("/api/client", clientRoutes);
