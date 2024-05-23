@@ -1,4 +1,3 @@
-// Define the messages schema
 const messageSchema = new mongoose.Schema({
   chatId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -10,13 +9,14 @@ const messageSchema = new mongoose.Schema({
   },
   sendBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Chat", // Reference to the Chat model
+    ref: "User", // Reference to the User model
     required: true,
   },
   sendTo: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Chat", // Reference to the Chat model
+    ref: "User", // Reference to the User model
     required: true,
   },
 });
+
 module.exports = mongoose.model("Messages", messageSchema);

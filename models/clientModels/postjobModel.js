@@ -65,6 +65,7 @@ const postjobSchema = new mongoose.Schema({
   jobCategory: {
     availability: {
       type: String,
+      enum: ["fulltime", "parttime"],
     },
   },
   createdAt: {

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  // Additional fields specific to  freelancers
+  // Additional field specific to  freelancers
   countryName: {
     type: [String], // Array of strings to hold multiple countries
   },
